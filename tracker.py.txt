@@ -1,0 +1,52 @@
+# Name-Prachi Yadav
+# Roll no. 2501010119
+# Date- 9/10/2025
+# Project title- Daily Calorie Tracker CLI
+# This project aims to  build a Python-based CLI (Command Line Interface) tool where we 
+# can log our meals and keep track of total calories consumed, compare against a personal daily 
+# limit, and save session logs for future tracking. 
+
+print("Welcome to the Daily Calorie Tracker CLI!" )
+print("This program helps you record your daily meals and calorie intake.")
+print("You can log meals, view total calories consumed, and save your session logs.")
+print("Let's get started!\n")
+# Features of Daily Calorie Tracker:
+# 1. Log Meals: Input meal name and calorie count.
+
+Totalmeals=int(input("Enter the total number of meals you want to log today: "))
+
+#for storing the meal name 
+meals_list = []
+#for storing the calorie count
+calories_list = []
+#sum variable to store total calories
+total_calories= 0
+#loop to log meals
+for i in range(Totalmeals):
+    meal_name = input("Enter the meal name: ( or type q to stop) ")
+    if meal_name.lower() == 'q':
+        break
+    
+    calorie_input = input("Enter the calorie count for this meal (or type q to stop): ")
+    if calorie_input.lower() == 'q':
+        break
+
+    try:
+        calorie_count = int(calorie_input)
+    except ValueError:
+        print("Invalid input! Please enter a number for calories.\n")
+        continue
+    meals_list.append(meal_name)
+    calories_list.append(calorie_count)
+    total_calories += calorie_count
+    print(f"Meal '{meal_name}' with {calorie_count} calories logged successfully.\n")
+# 2. View Total Calories: Display total calories consumed so far.
+print(f"\nTotal calories consumed today: {total_calories} calories.")
+if len(calories_list) > 0:
+    avg_calories = total_calories / len(calories_list)
+    print(f"Average calorie intake per meal: {avg_calories:.2f} calories.\n")
+daily_limit = int(input("Set your personal daily calorie limit: "))
+if total_calories > daily_limit:
+    print("Warning: You have exceeded your daily calorie limit!\n") 
+else:
+    print("You are within your daily calorie limit. Keep it up!\n")
